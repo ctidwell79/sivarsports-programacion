@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1E2D58">
+<title>SIVAR · CTC — Programación LD Apertura 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1E2D58;
+    --navy-deep: #141f3d;
+    --coral: #E8607A;
+    --coral-deep: #c84660;
+    --bone: #f4f1ea;
+    --paper: #ebe6dc;
+    --ink: #0e1428;
+    --muted: #6b7591;
+    --line: rgba(30, 45, 88, 0.12);
+    --pad-x: clamp(16px, 4vw, 40px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    background: var(--bone);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(232, 96, 122, 0.06), transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(30, 45, 88, 0.08), transparent 50%);
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--navy);
+    color: var(--bone);
+    padding: clamp(20px, 5vw, 32px) var(--pad-x) clamp(18px, 4vw, 28px);
+    border-bottom: 4px solid var(--coral);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: clamp(300px, 60vw, 600px);
+    height: clamp(300px, 60vw, 600px);
+    background: radial-gradient(circle, rgba(232, 96, 122, 0.15), transparent 60%);
+    pointer-events: none;
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    border-bottom: 1px solid rgba(244, 241, 234, 0.15);
+    padding-bottom: clamp(10px, 2vw, 14px);
+    margin-bottom: clamp(14px, 3vw, 22px);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.6vw, 11px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .live-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: var(--coral);
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s ease-in-out infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .masthead h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 11vw, 92px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    position: relative;
+  }
+
+  .masthead h1 .accent {
+    color: var(--coral);
+    font-style: italic;
+  }
+
+  .masthead-tagline {
+    margin-top: clamp(10px, 2vw, 14px);
+    font-size: clamp(10px, 2.2vw, 13px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(244, 241, 234, 0.7);
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .masthead-tagline strong {
+    color: var(--coral);
+    font-weight: 900;
+  }
+
+  /* STATS BAR — horizontal scroll on narrow */
+  .stats-bar {
+    background: var(--navy-deep);
+    color: var(--bone);
+    padding: clamp(14px, 3vw, 18px) var(--pad-x);
+    display: flex;
+    gap: clamp(20px, 5vw, 48px);
+    align-items: center;
+    border-bottom: 1px solid rgba(244, 241, 234, 0.08);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .stats-bar::-webkit-scrollbar { display: none; }
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 36px);
+    line-height: 1;
+    color: var(--coral);
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.5vw, 10px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    line-height: 1.3;
+  }
+
+  /* CONTROLS */
+  .controls {
+    padding: clamp(20px, 4vw, 28px) var(--pad-x) 8px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .filter-row { margin-bottom: clamp(16px, 3vw, 22px); }
+
+  .filter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.6vw, 10px);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .filter-label::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background: var(--coral);
+    flex-shrink: 0;
+  }
+
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .chip {
+    background: transparent;
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    padding: 9px 14px;
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(11px, 1.8vw, 12px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-radius: 0;
+    white-space: nowrap;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .chip:active { transform: scale(0.96); }
+
+  @media (hover: hover) {
+    .chip:hover {
+      background: var(--navy);
+      color: var(--bone);
+      transform: translateY(-1px);
+    }
+  }
+
+  .chip.active {
+    background: var(--navy);
+    color: var(--bone);
+    box-shadow: 3px 3px 0 var(--coral);
+  }
+
+  .chip.team-chip.active {
+    background: var(--coral);
+    border-color: var(--coral);
+    color: white;
+    box-shadow: 3px 3px 0 var(--navy);
+  }
+
+  .chip-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.4vw, 10px);
+    opacity: 0.7;
+    margin-left: 6px;
+  }
+
+  .clear-btn {
+    background: transparent;
+    border: none;
+    color: var(--coral-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 10px 0;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    min-height: 40px;
+  }
+
+  /* GAMES */
+  .games-container {
+    padding: clamp(20px, 4vw, 32px) var(--pad-x) calc(60px + var(--safe-bottom));
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 3vw, 20px);
+    margin: clamp(24px, 5vw, 36px) 0 clamp(14px, 3vw, 18px);
+    padding-bottom: clamp(8px, 2vw, 12px);
+    border-bottom: 2px solid var(--navy);
+    flex-wrap: wrap;
+  }
+
+  .day-header:first-child { margin-top: 4px; }
+
+  .day-header-text { flex: 1; min-width: 0; }
+
+  .day-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 6vw, 44px);
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .day-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(10px, 1.8vw, 11px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .day-count {
+    background: var(--navy);
+    color: var(--bone);
+    padding: 5px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(10px, 1.6vw, 11px);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  @media (min-width: 720px) {
+    .games-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+
+  @media (min-width: 1080px) {
+    .games-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 14px; }
+  }
+
+  .game-card {
+    background: white;
+    border: 1px solid var(--line);
+    padding: clamp(14px, 3vw, 18px) clamp(14px, 3vw, 20px);
+    position: relative;
+    transition: all 0.2s ease;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: clamp(10px, 2vw, 14px);
+    align-items: start;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--navy);
+    transition: width 0.2s ease;
+  }
+
+  .game-card.sivar::before { background: var(--coral); }
+
+  @media (hover: hover) {
+    .game-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 45, 88, 0.12);
+    }
+    .game-card:hover::before { width: 6px; }
+  }
+
+  .game-card:active { transform: scale(0.99); }
+
+  .game-time-block {
+    text-align: center;
+    padding-right: clamp(10px, 2vw, 14px);
+    border-right: 1px solid var(--line);
+    min-width: 60px;
+  }
+
+  .game-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 4.5vw, 28px);
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .game-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.5vw, 10px);
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+    font-weight: 700;
+  }
+
+  .game-cat {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.5vw, 10px);
+    padding: 3px 6px;
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  .game-cat.fem { background: var(--coral); }
+
+  .game-matchup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .competition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    align-self: flex-start;
+    background: linear-gradient(135deg, #d63384 0%, #ad2462 100%);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(8px, 1.4vw, 9px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 8px 3px 7px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .competition-badge::before {
+    content: '★';
+    font-size: 1em;
+  }
+
+  .competition-badge.fesabal {
+    background: var(--navy);
+  }
+
+  .competition-badge.fesabal::before {
+    content: '◆';
+  }
+
+  .team-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(13px, 2.4vw, 14px);
+    font-weight: 600;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .team-name.our-team {
+    color: var(--coral-deep);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .vs-divider {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.5vw, 10px);
+    color: var(--muted);
+    font-style: italic;
+    margin: 2px 0;
+    letter-spacing: 0.1em;
+  }
+
+  .game-venue {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(9px, 1.6vw, 10px);
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.4;
+  }
+
+  .game-venue::before {
+    content: '◉';
+    color: var(--coral);
+    flex-shrink: 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: clamp(50px, 10vw, 80px) 20px;
+    color: var(--muted);
+  }
+
+  .empty-state-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 12vw, 80px);
+    color: var(--line);
+    line-height: 1;
+  }
+
+  .empty-state h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 5vw, 32px);
+    color: var(--navy);
+    margin: 16px 0 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .empty-state p { font-size: clamp(13px, 2.4vw, 14px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: var(--bone);
+    padding: clamp(24px, 5vw, 32px) var(--pad-x) calc(clamp(24px, 5vw, 32px) + var(--safe-bottom));
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(10px, 1.8vw, 11px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  footer strong {
+    color: var(--coral);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 3vw, 18px);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* EXTRA-NARROW (≤360px) */
+  @media (max-width: 360px) {
+    .masthead-top span:last-child { display: none; }
+    .stats-bar { gap: 16px; }
+    .chip { padding: 8px 11px; font-size: 10.5px; }
+    .game-card { grid-template-columns: 56px 1fr; padding: 12px; gap: 10px; }
+    .game-time { font-size: 20px; }
+    .game-time-block { padding-right: 10px; min-width: 52px; }
+    .team-line { font-size: 12.5px; }
+  }
+
+  /* ANIMATIONS */
+  .game-card { animation: fadeInUp 0.4s ease backwards; }
+  .day-block { animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <span><span class="live-dot"></span>LD · Apertura 2026</span>
+    <span>Act. 05 May 2026</span>
+  </div>
+  <h1>Programación<br><span class="accent">Oficial</span></h1>
+  <div class="masthead-tagline">
+    SIVAR Sports Academy <strong>×</strong> CTC BKB Club<br>
+    <strong>Campeones Trabajan Como Campeones</strong>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-num" id="totalGames">0</span>
+    <span class="stat-label">Total<br>Juegos</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="totalDays">0</span>
+    <span class="stat-label">Días de<br>Juego</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="totalTeams">0</span>
+    <span class="stat-label">Equipos<br>Activos</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="visibleCount">0</span>
+    <span class="stat-label">Visibles<br>Ahora</span>
+  </div>
+</div>
+
+<section class="controls">
+  <div class="filter-row">
+    <div class="filter-label">Filtrar por Fecha</div>
+    <div class="chip-group" id="dateFilters"></div>
+  </div>
+
+  <div class="filter-row">
+    <div class="filter-label">Filtrar por Equipo</div>
+    <div class="chip-group" id="teamFilters"></div>
+  </div>
+
+  <div class="filter-row" style="margin-bottom: 12px;">
+    <button class="clear-btn" onclick="clearAllFilters()">↺ Limpiar todos los filtros</button>
+  </div>
+</section>
+
+<main class="games-container" id="gamesContainer"></main>
+
+<footer>
+  <strong>SIVAR · CTC · Temporada 2026</strong>
+  Programación oficial · Verificar con coaches y organizadores antes de cada juego
+</footer>
+
+<script>
+  const games = [
+    { date: '2026-05-09', day: 'Sábado', cat: 'U12F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Guerreros', time: '8:00 a.m.', timeSort: 800, venue: 'Cancha Chapupo', competition: 'TORNEO MINI' },
+    { date: '2026-05-09', day: 'Sábado', cat: 'U12M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Delgadence', time: '9:00 a.m.', timeSort: 900, venue: 'Cancha Chapupo', competition: 'TORNEO MINI' },
+    { date: '2026-05-09', day: 'Sábado', cat: 'U16F', teamA: 'San Salvador B.C.', teamB: 'SIVAR SPORTS ACADEMY', time: '8:00 a.m.', timeSort: 800, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-09', day: 'Sábado', cat: 'U18M', teamA: 'FUSALMO', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-05-09', day: 'Sábado', cat: 'U14F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Academia Martín Luna', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-09', day: 'Sábado', cat: 'U14F', teamA: 'CTC BKB CLUB', teamB: 'Masferrer', time: '2:15 p.m.', timeSort: 1415, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-05-16', day: 'Sábado', cat: 'U14M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Capitalinos 503', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-16', day: 'Sábado', cat: 'U18M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'SPRTNS', time: '10:30 a.m.', timeSort: 1030, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-05-16', day: 'Sábado', cat: 'U16M', teamA: 'CTC BKB CLUB', teamB: 'ON FIRE', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-16', day: 'Sábado', cat: 'U14F', teamA: 'Academia Martín Luna', teamB: 'CTC BKB CLUB', time: '4:45 p.m.', timeSort: 1645, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-17', day: 'Domingo', cat: 'U16F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Gorillaz', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-05-17', day: 'Domingo', cat: 'U14F', teamA: 'Batenecas', teamB: 'SIVAR SPORTS ACADEMY', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-17', day: 'Domingo', cat: 'U16M', teamA: 'C.D. Sonsonate', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-05-23', day: 'Sábado', cat: 'U18M', teamA: 'El Cambio B.C.', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U18F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Club FSB', time: '8:00 a.m.', timeSort: 800, venue: 'Complejo "Chapupo Rodríguez"', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U16F', teamA: 'ON FIRE', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U14M', teamA: 'ON FIRE', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U14F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Dragons', time: '2:15 p.m.', timeSort: 1415, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U16M', teamA: 'SAN SALVADOR B.C.', teamB: 'CTC BKB CLUB', time: '3:30 p.m.', timeSort: 1530, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U14F', teamA: 'CTC BKB CLUB', teamB: 'Batenecas', time: '3:30 p.m.', timeSort: 1530, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-05-24', day: 'Domingo', cat: 'U16M', teamA: 'SPURS', teamB: 'SIVAR SPORTS ACADEMY', time: '4:45 p.m.', timeSort: 1645, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+  ];
+
+  const SIVAR = 'SIVAR SPORTS ACADEMY';
+  const CTC = 'CTC BKB CLUB';
+
+  const teamCategories = [
+    { id: 'SIVAR-U12F', label: 'SIVAR U12F', org: SIVAR, cat: 'U12F' },
+    { id: 'SIVAR-U12M', label: 'SIVAR U12M', org: SIVAR, cat: 'U12M' },
+    { id: 'SIVAR-U14F', label: 'SIVAR U14F', org: SIVAR, cat: 'U14F' },
+    { id: 'SIVAR-U14M', label: 'SIVAR U14M', org: SIVAR, cat: 'U14M' },
+    { id: 'SIVAR-U16F', label: 'SIVAR U16F', org: SIVAR, cat: 'U16F' },
+    { id: 'SIVAR-U16M', label: 'SIVAR U16M', org: SIVAR, cat: 'U16M' },
+    { id: 'SIVAR-U18F', label: 'SIVAR U18F', org: SIVAR, cat: 'U18F' },
+    { id: 'SIVAR-U18M', label: 'SIVAR U18M', org: SIVAR, cat: 'U18M' },
+    { id: 'CTC-U14F', label: 'CTC U14F', org: CTC, cat: 'U14F' },
+    { id: 'CTC-U16M', label: 'CTC U16M', org: CTC, cat: 'U16M' },
+  ];
+
+  let activeDateFilter = 'all';
+  let activeTeams = new Set();
+
+  function getUniqueDates() {
+    return Array.from(new Set(games.map(g => g.date))).sort();
+  }
+
+  function formatDateLabel(dateStr) {
+    const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const [y, m, d] = dateStr.split('-');
+    return `${parseInt(d)} ${months[parseInt(m)-1]}`;
+  }
+
+  function formatLongDate(dateStr) {
+    const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    const [y, m, d] = dateStr.split('-');
+    return `${parseInt(d)} de ${months[parseInt(m)-1]}`;
+  }
+
+  function buildDateFilters() {
+    const container = document.getElementById('dateFilters');
+    const dates = getUniqueDates();
+
+    let html = `
+      <button class="chip ${activeDateFilter === 'all' ? 'active' : ''}" data-filter="all">
+        Todas <span class="chip-count">${games.length}</span>
+      </button>
+      <button class="chip ${activeDateFilter === 'weekend' ? 'active' : ''}" data-filter="weekend">
+        Fin de semana <span class="chip-count">${games.filter(g => g.day === 'Sábado' || g.day === 'Domingo').length}</span>
+      </button>
+    `;
+
+    dates.forEach(date => {
+      const count = games.filter(g => g.date === date).length;
+      const isActive = activeDateFilter === date;
+      html += `
+        <button class="chip ${isActive ? 'active' : ''}" data-filter="${date}">
+          ${formatDateLabel(date)} <span class="chip-count">${count}</span>
+        </button>
+      `;
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        activeDateFilter = chip.dataset.filter;
+        render();
+      });
+    });
+  }
+
+  function buildTeamFilters() {
+    const container = document.getElementById('teamFilters');
+    let html = '';
+
+    teamCategories.forEach(t => {
+      const count = games.filter(g =>
+        (g.teamA.toUpperCase() === t.org.toUpperCase() || g.teamB.toUpperCase() === t.org.toUpperCase())
+        && g.cat === t.cat
+      ).length;
+
+      const isActive = activeTeams.has(t.id);
+      html += `
+        <button class="chip team-chip ${isActive ? 'active' : ''}" data-team="${t.id}">
+          ${t.label} <span class="chip-count">${count}</span>
+        </button>
+      `;
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const id = chip.dataset.team;
+        if (activeTeams.has(id)) {
+          activeTeams.delete(id);
+        } else {
+          activeTeams.add(id);
+        }
+        render();
+      });
+    });
+  }
+
+  function gameMatchesFilters(game) {
+    if (activeDateFilter === 'weekend') {
+      if (game.day !== 'Sábado' && game.day !== 'Domingo') return false;
+    } else if (activeDateFilter !== 'all') {
+      if (game.date !== activeDateFilter) return false;
+    }
+
+    if (activeTeams.size > 0) {
+      let matchesAny = false;
+      for (const id of activeTeams) {
+        const team = teamCategories.find(t => t.id === id);
+        if (!team) continue;
+        if (game.cat === team.cat &&
+            (game.teamA.toUpperCase() === team.org.toUpperCase() ||
+             game.teamB.toUpperCase() === team.org.toUpperCase())) {
+          matchesAny = true;
+          break;
+        }
+      }
+      if (!matchesAny) return false;
+    }
+
+    return true;
+  }
+
+  function isOurTeam(name) {
+    const upper = name.toUpperCase();
+    return upper === SIVAR || upper === CTC;
+  }
+
+  function renderGameCard(game, index) {
+    const isSivar = game.teamA.toUpperCase() === SIVAR || game.teamB.toUpperCase() === SIVAR;
+    const isFem = game.cat.endsWith('F');
+    const teamAClass = isOurTeam(game.teamA) ? 'team-name our-team' : 'team-name';
+    const teamBClass = isOurTeam(game.teamB) ? 'team-name our-team' : 'team-name';
+
+    const timeParts = game.time.split(' ');
+    const timeNum = timeParts[0];
+    const period = timeParts.slice(1).join(' ');
+
+    const badgeHtml = game.competition
+      ? `<div class="competition-badge ${game.competition === 'FESABAL LD' ? 'fesabal' : ''}">${game.competition}</div>`
+      : '';
+
+    return `
+      <div class="game-card ${isSivar ? 'sivar' : ''}" style="animation-delay: ${Math.min(index * 0.03, 0.5)}s">
+        <div class="game-time-block">
+          <div class="game-time">${timeNum}</div>
+          <div class="game-period">${period}</div>
+          <div class="game-cat ${isFem ? 'fem' : ''}">${game.cat}</div>
+        </div>
+        <div class="game-matchup">
+          ${badgeHtml}
+          <div class="team-line"><span class="${teamAClass}">${game.teamA}</span></div>
+          <div class="vs-divider">vs.</div>
+          <div class="team-line"><span class="${teamBClass}">${game.teamB}</span></div>
+          <div class="game-venue"><span>${game.venue}</span></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function render() {
+    buildDateFilters();
+    buildTeamFilters();
+
+    const container = document.getElementById('gamesContainer');
+    const filtered = games.filter(gameMatchesFilters);
+
+    document.getElementById('visibleCount').textContent = filtered.length;
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">∅</div>
+          <h3>Sin juegos que mostrar</h3>
+          <p>Ajustá los filtros para ver juegos disponibles.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const byDate = {};
+    filtered.forEach(g => {
+      if (!byDate[g.date]) byDate[g.date] = [];
+      byDate[g.date].push(g);
+    });
+
+    Object.values(byDate).forEach(arr => arr.sort((a,b) => a.timeSort - b.timeSort));
+
+    let html = '';
+    let cardIndex = 0;
+    Object.keys(byDate).sort().forEach(date => {
+      const dayGames = byDate[date];
+      const day = dayGames[0].day;
+      html += `
+        <div class="day-block">
+          <div class="day-header">
+            <div class="day-header-text">
+              <div class="day-name">${day}</div>
+              <div class="day-date">${formatLongDate(date)}</div>
+            </div>
+            <div class="day-count">${dayGames.length} ${dayGames.length === 1 ? 'juego' : 'juegos'}</div>
+          </div>
+          <div class="games-grid">
+            ${dayGames.map(g => renderGameCard(g, cardIndex++)).join('')}
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+  }
+
+  function clearAllFilters() {
+    activeDateFilter = 'all';
+    activeTeams.clear();
+    render();
+  }
+
+  function initStats() {
+    document.getElementById('totalGames').textContent = games.length;
+    document.getElementById('totalDays').textContent = getUniqueDates().length;
+    document.getElementById('totalTeams').textContent = teamCategories.length;
+  }
+
+  initStats();
+  render();
+</script>
+
+</body>
+</html>
