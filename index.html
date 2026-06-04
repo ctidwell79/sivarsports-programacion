@@ -596,7 +596,7 @@
 <header class="masthead">
   <div class="masthead-top">
     <span><span class="live-dot"></span>LD · Apertura 2026</span>
-    <span>Act. 05 May 2026</span>
+    <span>Act. 02 Jun 2026</span>
   </div>
   <h1>Programación<br><span class="accent">Oficial</span></h1>
   <div class="masthead-tagline">
@@ -649,35 +649,41 @@
 
 <script>
   const games = [
-    { date: '2026-05-09', day: 'Sábado', cat: 'U12F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Guerreros', time: '8:00 a.m.', timeSort: 800, venue: 'Cancha Chapupo', competition: 'TORNEO MINI' },
-    { date: '2026-05-09', day: 'Sábado', cat: 'U12M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Delgadence', time: '9:00 a.m.', timeSort: 900, venue: 'Cancha Chapupo', competition: 'TORNEO MINI' },
-    { date: '2026-05-09', day: 'Sábado', cat: 'U16F', teamA: 'San Salvador B.C.', teamB: 'SIVAR SPORTS ACADEMY', time: '8:00 a.m.', timeSort: 800, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-09', day: 'Sábado', cat: 'U18M', teamA: 'FUSALMO', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
-    { date: '2026-05-09', day: 'Sábado', cat: 'U14F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Academia Martín Luna', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-09', day: 'Sábado', cat: 'U14F', teamA: 'CTC BKB CLUB', teamB: 'Masferrer', time: '2:15 p.m.', timeSort: 1415, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
-    { date: '2026-05-16', day: 'Sábado', cat: 'U14M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Capitalinos 503', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-16', day: 'Sábado', cat: 'U18M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'SPRTNS', time: '10:30 a.m.', timeSort: 1030, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
-    { date: '2026-05-16', day: 'Sábado', cat: 'U16M', teamA: 'CTC BKB CLUB', teamB: 'ON FIRE', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-16', day: 'Sábado', cat: 'U14F', teamA: 'Academia Martín Luna', teamB: 'CTC BKB CLUB', time: '4:45 p.m.', timeSort: 1645, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-17', day: 'Domingo', cat: 'U16F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Gorillaz', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
-    { date: '2026-05-17', day: 'Domingo', cat: 'U14F', teamA: 'Batenecas', teamB: 'SIVAR SPORTS ACADEMY', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-17', day: 'Domingo', cat: 'U16M', teamA: 'C.D. Sonsonate', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
-    { date: '2026-05-23', day: 'Sábado', cat: 'U18M', teamA: 'El Cambio B.C.', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U18F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Club FSB', time: '8:00 a.m.', timeSort: 800, venue: 'Complejo "Chapupo Rodríguez"', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U16F', teamA: 'ON FIRE', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U14M', teamA: 'ON FIRE', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U14F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Dragons', time: '2:15 p.m.', timeSort: 1415, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U16M', teamA: 'SAN SALVADOR B.C.', teamB: 'CTC BKB CLUB', time: '3:30 p.m.', timeSort: 1530, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U14F', teamA: 'CTC BKB CLUB', teamB: 'Batenecas', time: '3:30 p.m.', timeSort: 1530, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
-    { date: '2026-05-24', day: 'Domingo', cat: 'U16M', teamA: 'SPURS', teamB: 'SIVAR SPORTS ACADEMY', time: '4:45 p.m.', timeSort: 1645, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-06', day: 'Sábado', cat: 'U14M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Santa Tecla IMDELS', time: '8:00 a.m.', timeSort: 800, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-06', day: 'Sábado', cat: 'U18M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Panchimalco SSS', time: '8:00 a.m.', timeSort: 800, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-06-06', day: 'Sábado', cat: 'U16M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Santa Tecla IMDELS', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-06', day: 'Sábado', cat: 'U18F', teamA: 'Santa Inés', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-06-06', day: 'Sábado', cat: 'U14F', teamA: 'Wonder BKB Academy', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-07', day: 'Domingo', cat: 'U14F', teamA: 'Dragons', teamB: 'CTC BKB CLUB', time: '9:15 a.m.', timeSort: 915, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-07', day: 'Domingo', cat: 'U16M', teamA: 'CTC BKB CLUB', teamB: 'Academia Martín Luna', time: '11:45 a.m.', timeSort: 1145, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-07', day: 'Domingo', cat: 'U16F', teamA: 'Capitalinos 503', teamB: 'SIVAR SPORTS ACADEMY', time: '3:30 p.m.', timeSort: 1530, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-13', day: 'Sábado', cat: 'U18F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'La Paz Este', time: '9:15 a.m.', timeSort: 915, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-06-13', day: 'Sábado', cat: 'U16M', teamA: 'CTC BKB CLUB', teamB: 'C.D. Sonsonate', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-13', day: 'Sábado', cat: 'U18M', teamA: 'Dragons', teamB: 'SIVAR SPORTS ACADEMY', time: '4:45 p.m.', timeSort: 1645, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-06-14', day: 'Domingo', cat: 'U14F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'CTC BKB CLUB', time: '8:00 a.m.', timeSort: 800, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-14', day: 'Domingo', cat: 'U14M', teamA: 'Academia Duke', teamB: 'SIVAR SPORTS ACADEMY', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-14', day: 'Domingo', cat: 'U16M', teamA: 'ON FIRE', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-14', day: 'Domingo', cat: 'U16F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Academia Ballers', time: '2:15 p.m.', timeSort: 1415, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-20', day: 'Sábado', cat: 'U14M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Seven', time: '8:00 a.m.', timeSort: 800, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-20', day: 'Sábado', cat: 'U14F', teamA: 'Gorillaz', teamB: 'SIVAR SPORTS ACADEMY', time: '9:15 a.m.', timeSort: 915, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-20', day: 'Sábado', cat: 'U14M', teamA: 'Academia Martín Luna', teamB: 'SIVAR SPORTS ACADEMY', time: '11:45 a.m.', timeSort: 1145, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-20', day: 'Sábado', cat: 'U18M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Club FSB', time: '11:45 a.m.', timeSort: 1145, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-06-20', day: 'Sábado', cat: 'U18F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Huskies', time: '2:15 p.m.', timeSort: 1415, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
+    { date: '2026-06-20', day: 'Sábado', cat: 'U14F', teamA: 'CTC BKB CLUB', teamB: 'Wonder BKB Academy', time: '3:30 p.m.', timeSort: 1530, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-21', day: 'Domingo', cat: 'U16F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'FUSALMO', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-21', day: 'Domingo', cat: 'U18M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'SPURS', time: '2:15 p.m.', timeSort: 1415, venue: 'Complejo "Chapupo Rodríguez"', competition: 'FESABAL LD' },
+    { date: '2026-06-27', day: 'Sábado', cat: 'U14F', teamA: 'CTC BKB CLUB', teamB: 'Gorillaz', time: '9:15 a.m.', timeSort: 915, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-27', day: 'Sábado', cat: 'U16M', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Don Bosco', time: '10:30 a.m.', timeSort: 1030, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-27', day: 'Sábado', cat: 'U16M', teamA: 'Santa Tecla IMDELS', teamB: 'CTC BKB CLUB', time: '11:45 a.m.', timeSort: 1145, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-27', day: 'Sábado', cat: 'U16F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'FUSALMO', time: '11:45 a.m.', timeSort: 1145, venue: 'Gim. Nacional · Duela 3', competition: 'FESABAL LD' },
+    { date: '2026-06-27', day: 'Sábado', cat: 'U14F', teamA: 'SIVAR SPORTS ACADEMY', teamB: 'Delgadense School', time: '1:00 p.m.', timeSort: 1300, venue: 'Gim. Nacional · Duela 2', competition: 'FESABAL LD' },
+    { date: '2026-06-27', day: 'Sábado', cat: 'U18M', teamA: 'Seven', teamB: 'SIVAR SPORTS ACADEMY', time: '1:00 p.m.', timeSort: 1300, venue: 'Gimnasio "Enrique Samour", SSS', competition: 'FESABAL LD' },
   ];
 
   const SIVAR = 'SIVAR SPORTS ACADEMY';
   const CTC = 'CTC BKB CLUB';
 
   const teamCategories = [
-    { id: 'SIVAR-U12F', label: 'SIVAR U12F', org: SIVAR, cat: 'U12F' },
-    { id: 'SIVAR-U12M', label: 'SIVAR U12M', org: SIVAR, cat: 'U12M' },
     { id: 'SIVAR-U14F', label: 'SIVAR U14F', org: SIVAR, cat: 'U14F' },
     { id: 'SIVAR-U14M', label: 'SIVAR U14M', org: SIVAR, cat: 'U14M' },
     { id: 'SIVAR-U16F', label: 'SIVAR U16F', org: SIVAR, cat: 'U16F' },
